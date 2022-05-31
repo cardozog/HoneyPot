@@ -160,7 +160,7 @@
           <div class="col-lg-6">
 
               <!-- to get an API token!-->
-              <form id="matricula" data-sb-form-api-token="API_TOKEN" action="../cadastroAluno/salvar.php" method="post">
+              <form id="matricula" data-sb-form-api-token="API_TOKEN" action="../cadastroAluno/cadastrar.php" >
                   <!-- Name input-->
                   <div class="form-floating mb-3">
                       <input class="form-control" id="nome" type="text" placeholder="Digite seu nome..." data-sb-validations="required" name ="nome"/>
@@ -181,14 +181,14 @@
                   </div>
                   <div class="form-floating mb-3">
                       <select class="form-control" id="curso" name="curso" >
-                      <option>Python</option>
+                      <option >Python</option>
                       <option>MySQL</option>
                       <option>HTML, CSS, JavaScript</option> 
                       </select>
                       <label for="curso">Curso</label>
                   </div>
                   <!-- Submit Button-->
-                  <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Enviar</button></div>
+                  <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Cadastre-se!</button></div>
               </form>
           </div>
               </div>

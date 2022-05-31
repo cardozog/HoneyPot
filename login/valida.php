@@ -8,20 +8,20 @@
     $login = $_POST['loginUsuario'];
     $senha = $_POST['senhaUsuario'];
     
-    $sql = "select * from usuario
-            where nome = '$login' and senha = '$senha'";
+    $sql = "select * from aluno
+            where login = '$login' and senha = '$senha'";
  
       $registros = $banco->query($sql);
 
-      if ( ! empty($registros) ) {
+      if ( ! empty($registros)) {
         
         foreach ($registros as $linha) { 
           
-          if ($linha['nome'] == $login && $linha['senha']==$senha) {
+          if ($linha['login'] == $login && $linha['senha']==$senha) {
             
             echo '
             <script>
-              window.location.replace("https://HoneyPotFinal.cardozog.repl.co");
+              window.location.replace("https://honeypotfinal.cardozog.repl.co/cadastroAluno/index.php");
             </script>
           ';
             
@@ -32,14 +32,14 @@
 
         echo '
             <script>
-              window.location.replace("https://PHPLoginBanco2.andreeppinghaus.repl.co");
+              window.location.replace("https://honeypotfinal.cardozog.repl.co/login/index.php?erro");
             </script>
           ';
          
       }else {
         echo '
             <script>
-              window.location.replace("https://PHPLoginBanco2.andreeppinghaus.repl.co");
+              window.location.replace("https://honeypotfinal.cardozog.repl.co/login/index.php?erro");
             </script>
           ';
       }

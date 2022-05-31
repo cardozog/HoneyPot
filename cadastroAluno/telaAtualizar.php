@@ -38,7 +38,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="../cursos/index.php">Voltar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php#gerenciamento">Voltar</a></li>
 
                     </ul>
                 </div>
@@ -50,32 +50,61 @@
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
                         <img src="/assets/img/honeycombImagem.png" style="width:80px"/>
-                        <h1 class="text-white font-weight-bold fonteTitulo">Honeypot - Área do Aluno</h1>
+                        <h1 class="text-white font-weight-bold fonteTitulo">Atualização de Dados</h1>
                         <hr class="divider" />
                     </div>
   <div class="col-lg-8 align-self-baseline">
 
     <!-- login -->
-<form action="valida.php" method="post">
-  <div class="mb-3">
-    <input type="text" class="form-control" id="login" name="loginUsuario" placeholder="Usuário">
-  </div>
-  <div class="mb-3">
-    <input type="password" class="form-control" id="senha" name="senhaUsuario" placeholder="Senha">
-  </div>
-  <br>
-  <input type="submit" class="btn btn-primary btn-xl" value="Entrar"/>
-</form>
+<form action="atualizar.php" >
 
-    <?php
-if(isset($_GET['erro'])){
-  echo '<br><br><div class="alert alert-danger" role="alert"> Login ou senha inválidos.
-            </div>';
-}
-?>   
+      <?php
+
+      include_once("../Service/Banco.php");
+
+      if (isset($_GET['id']) ) {
+
+          $id = $_GET['id'];
+
+        echo "<input type='hidden' name='id' value='$id'> ";
+        
+          $banco = new Banco();
+          $sql = "select * from aluno
+                  where id = $id";
+          $registros = $banco->query($sql);
+
+           if (isset($registros)) {
+              foreach ($registros as $linha) { 
+                echo '
+                  <div class="mb-3">
+                    <label for="idnome" class="form-label text-white font-weight-bold fonteTitulo">Nome</label>
+                    <input type="text" class="form-control" id="idnome" name="nome" value='.$linha['nome'].'>
+                   </div>
+                  <div class="mb-3">
+                    <label for="idlogin" class="form-label text-white font-weight-bold fonteTitulo">Login</label>
+                    <input type="text" class="form-control"  id="idlogin" name="login" value='.$linha['login'].'>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="idsenha" class="form-label text-white font-weight-bold fonteTitulo">Senha</label>
+                    <input type="text" class="form-control" id="idsenha" name="senha" value='.$linha['senha'].'>
+                   </div>
+             ';
+              }
+           }else {
+             echo '<div class="alert alert-danger" role="alert">
+    Registro não encontrado.
+</div>';
+           }   
+      }
+   
+      ?>
+      <input type="submit" value="Salvar" class="btn btn-success">
+      <br>  <br>
+    </form>
+
   </div>
-                </div>
-            </div>
+
         </header>
 
         <!-- Footer-->

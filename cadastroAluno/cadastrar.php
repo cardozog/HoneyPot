@@ -1,7 +1,7 @@
 <?php
 include_once("../Service/Banco.php");
 
-if (isset($_GET['nome']) &&isset($_GET['login'])&& isset($_GET['senha'])&& isset($_GET['curso'])) {
+if (isset($_GET['login']) && isset($_GET['senha']) && isset($_GET['nome']) && isset($_GET['curso'])) {
   
   $banco = new Banco();
 
@@ -15,18 +15,18 @@ if (isset($_GET['nome']) &&isset($_GET['login'])&& isset($_GET['senha'])&& isset
     )"
   );
   
-  $nome = $_GET['nome'];
   $login = $_GET['login'];
   $senha = $_GET['senha'];
-  $senha = $_GET['curso'];  
+  $nome = $_GET['nome'];
+  $curso = $_GET['curso'];
 
   $sql = "insert into 
-         usuario(nome,login,senha,curso) 
-         values('$nome','$login','$senha','$curso')";
+         aluno(login,senha,nome,curso) 
+         values('$login','$senha','$nome','$curso')";
 
   $banco->exec($sql);
   
-  header('Location: https://HoneyPotFinal.cardozog.repl.co/index.php');
-}
 
+}
+  header('Location: https://HoneyPotFinal.cardozog.repl.co/login/index.php');
 ?>
